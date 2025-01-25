@@ -21,7 +21,7 @@ dotEnv.config()
 //MongoDB Connection
 try {
     mongoose.connect(process.env.MONGO_URL)
-    console.log('DB connected')
+   
 } catch (error) {
     console.log("error",error)
     
@@ -118,7 +118,7 @@ app.post('/add-story',Authonticate,async(request,response)=>{
     }
 
     const parsedDate=new Date(parseInt(vistedDate));
-    const placeholderImage=`http://localhost:3000/uploads/placeholder.jpg`;
+    const placeholderImage=`https://travel-story-backend-4xi3.onrender.com/uploads/placeholder.jpg`;
 
     const addStory=new storyModel({
         title,
@@ -167,7 +167,7 @@ app.post('/image-upload',upload.single('image'),async(request,response)=>{
         return response.status(400).json({message:'image Not Uploaded'})
     }
 
-    const imageUrl=`http://localhost:3000/uploads/${request.file.filename}`
+    const imageUrl=`https://travel-story-backend-4xi3.onrender.com/uploads/${request.file.filename}`
     response.status(201).json({message:"Image Uploaded SuccessFully",imageUrl})
     
    } catch (error) {
@@ -210,7 +210,7 @@ app.put('/edit-post/:id',Authonticate,async(request,response)=>{
         response.status(404).json({message:"Travel story Not Found"})
 
     }
-    const placeholderImage=`http://localhost:3000/assets/placeholder.jpg`;
+    const placeholderImage=`https://travel-story-backend-4xi3.onrender.com/assets/placeholder.jpg`;
     travelstory.title=title
     travelstory.story=story
     travelstory.visitedDate=parsedDate
